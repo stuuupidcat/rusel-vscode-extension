@@ -1,0 +1,25 @@
+{
+  "name": "rusel-vscode-extension",
+  "displayName": "rusel-vscode-extension",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.89.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "rusel",
+      "aliases": ["rusel", "rusel"],
+      "extensions": [".patt",".pat"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "rusel",
+      "scopeName": "source.patt",
+      "path": "./syntaxes/rusel.tmLanguage.json"
+    }]
+  }
+}
