@@ -4,14 +4,214 @@
     "patterns": [
         {
             "include": "#keywords"
+        },
+        {
+            "include": "#type-keywords"
+        },
+        {
+            "include": "#string"
+        },
+        {
+            "include": "#comments"
+        },
+        {
+            "include": "#class"
+        },
+        {
+            "include": "#numbers"
+        },
+        {
+            "include": "#expressions"
+        },
+        {
+            "include": "#markdown-code"
         }
     ],
     "repository": {
         "keywords": {
-            "patterns": [{
-                "name": "keyword.control.rusel",
-                "match": "\\b(if|while|for|return)\\b"
-            }]
+            "patterns": [
+                {
+                    "name": "keyword.rusel",
+                    "match": "\\b(patt|tree|cstr|use|pred)\\b"
+                }
+            ]
+        },
+        "type-keywords": {
+            "patterns": [
+                {
+                    "name": "type-keyword.rusel",
+                    "match": "\\b(code|Rust)\\b"
+                }
+            ]
+        },
+        "comments": {
+            "patterns": [
+                {
+                    "name": "comment.line.rusel",
+                    "begin": "//",
+                    "end": "$"
+                },
+                {
+                    "name": "comment.block.rusel",
+                    "begin": "/\\*",
+                    "end": "\\*/"
+                }
+            ]
+        },
+        "string": {
+            "patterns": [
+                {
+                    "name": "string.quoted.double.rusel",
+                    "begin": "\"",
+                    "end": "\""
+                },
+                {
+                    "name": "string.quoted.single.rusel",
+                    "begin": "'",
+                    "end": "'"
+                }
+            ]
+        },
+        "class": {
+            "patterns": [
+                {
+                    "name": "class.rusel",
+                    "begin": "#",
+                    "end": "(?=\\W)",
+                    "patterns": [
+                        {
+                            "match": "\\w+"
+                        }
+                    ]
+                }
+            ]
+        },
+        "operators": {
+            "patterns": [
+                {
+                    "name": "keyword.operator.arithmetic.rusel",
+                    "match": "\\+|-|\\*|/|\\^|%|\\?|!|\\.{2,}|~|&|\\||-|>|<|=|:|="
+                }
+            ]
+        },
+        "numbers": {
+            "patterns": [
+                {
+                    "name": "constant.numeric.rusel",
+                    "match": "\\b[0-9]+\\b"
+                }
+            ]
+        },
+        "markdown-code": {
+            "patterns": [
+                {
+                    "name": "markup.inline.raw.markdown",
+                    "begin": "`",
+                    "end": "`"
+                },
+                {
+                    "name": "markup.inline.raw.markdown",
+                    "begin": "```",
+                    "end": "```"
+                }
+            ]
+        },
+        "property": {
+            "patterns": [
+                {
+                    "name": "meta.property.rusel",
+                    "begin": "::(?=\\w)",
+                    "end": "(?=\\W)",
+                    "patterns": [
+                        {
+                            "name": "entity.name.property.rusel",
+                            "match": "\\w+"
+                        }
+                    ]
+                }
+            ]
+        },
+        "type-variables": {
+            "patterns": [
+                {
+                    "name": "entity.name.type.rusel",
+                    "begin": "\\w",
+                    "end": "(?=\\W)",
+                    "patterns": [
+                        {
+                            "name": "entity.name.type.rusel",
+                            "match": "\\w*"
+                        }
+                    ]
+                }
+            ]
+        },
+        "query": {
+            "patterns": [
+                {
+                    "include": "#type-variables"
+                },
+                {
+                    "name": "entity.name.type.rusel",
+                    "match": "\\*\\*?"
+                },
+                {
+                    "name": "meta.subpath.rusel",
+                    "begin": "\\.",
+                    "end": "(?=$|\\])",
+                    "patterns": [
+                        {
+                            "include": "#query"
+                        }
+                    ]
+                }
+            ]
+        },
+        "expressions": {
+            "patterns": [
+                {
+                    "include": "#keywords"
+                },
+                {
+                    "include": "#property"
+                },
+                {
+                    "include": "#operators"
+                },
+                {
+                    "include": "#type-variables"
+                },
+                {
+                    "name": "meta.parameters.rusel",
+                    "begin": "\\(",
+                    "end": "\\)",
+                    "patterns": [
+                        {
+                            "include": "#keywords"
+                        },
+                        {
+                            "name": "variable.parameter.rusel",
+                            "begin": "\\w",
+                            "end": "(?=\\W)",
+                            "patterns": [
+                                {
+                                    "match": "\\w*"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "meta.type.rusel",
+                            "begin": ":",
+                            "end": "(?=[,\\)\\n])",
+                            "patterns": [
+                                {
+                                    "include": "#types"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
         }
     },
     "scopeName": "source.patt"
