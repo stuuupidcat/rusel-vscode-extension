@@ -39,7 +39,7 @@
         "type-keywords": {
             "patterns": [
                 {
-                    "name": "type-keyword.rusel",
+                    "name": "keyword.control.rusel",
                     "match": "\\b(code|Rust)\\b"
                 }
             ]
@@ -75,14 +75,8 @@
         "class": {
             "patterns": [
                 {
-                    "name": "class.rusel",
-                    "begin": "#",
-                    "end": "(?=\\W)",
-                    "patterns": [
-                        {
-                            "match": "\\w+"
-                        }
-                    ]
+                    "name": "entity.other.attribute-name",
+                    "match": "\\b#\\w+\\b"
                 }
             ]
         },
@@ -119,12 +113,12 @@
         "property": {
             "patterns": [
                 {
-                    "name": "meta.property.rusel",
-                    "begin": "::(?=\\w)",
-                    "end": "(?=\\W)",
+                    "name": "meta.selector.rusel",
+                    "begin": "::",
+                    "end": "[^\\w]",
                     "patterns": [
                         {
-                            "name": "entity.name.property.rusel",
+                            "name": "entity.name.tag.rusel",
                             "match": "\\w+"
                         }
                     ]
